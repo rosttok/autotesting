@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project default="runjunit" name="testing">
+<project default="clean-init" name="testing">
     <target name="compile" depends="init" >
-        <javac includeantruntime="faulse" srcdir="./src" destdir="./classpath" classpath="./tools/junit-4.11.jar:./tools/hamcrest-all-1.3.jar:./tools/selenium-server-standalone-2.46.0.jar" />
+        <javac includeantruntime="faulse" 
+	srcdir="./src" 
+	destdir="./classpath" 
+	classpath="./tools/junit-4.11.jar:./tools/hamcrest-all-1.3.jar:./tools/selenium-server-standalone-2.46.0.jar" />
     </target>
     <target name="runjunit" depends="compile">
         <junit printsummary="on" fork="true">
@@ -18,4 +21,9 @@
    <target name="init">
          <mkdir dir="./classpath"/>
     </target>
+<target name="clean-init" description="clean up" depends="runjunit">
+       <echo>I'm cleaning up.</echo>
+       <delete dir="classpath"/>
+        </target>
+
 </project>
